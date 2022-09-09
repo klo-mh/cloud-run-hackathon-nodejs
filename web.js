@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 7');
+  console.log('VERSION - 8');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
@@ -114,7 +114,9 @@ app.post('/', function (req, res) {
   let playInFront = isPlayerInFront(myPlayer, state);
   console.log('PLAYER IN FRONT OF ME');
   console.log(playInFront);
-  if (playInFront){
+  if (myPlayer.wasHit) {
+    move = (moves[Math.floor(Math.random() * moves.length)]);
+  } else if (playInFront){
     move = 'T';
   } else {
     move = (moves[Math.floor(Math.random() * moves.length)]);
