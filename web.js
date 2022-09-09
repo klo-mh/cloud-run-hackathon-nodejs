@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  // console.log(req.body);
+  console.log(req.body);
   const info = req.body;
   const moves = ['F', 'T', 'L', 'R'];
   let findLowestScorePlayer = function(info){
