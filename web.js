@@ -134,6 +134,9 @@ app.post('/', function (req, res) {
         console.log('DEBUG');
         console.log(checkCoordS2);
         console.log(coord);
+        console.log('DEBUG');
+        console.log(checkCoordS1);
+        console.log(coord);
         if (checkCoordE1.x == coord.x && checkCoordE1.y == coord.y){
           east[0] = 1;
         } else {
