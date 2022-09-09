@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 2');
+  console.log('VERSION - 3');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
