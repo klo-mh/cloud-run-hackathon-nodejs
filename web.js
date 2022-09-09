@@ -42,6 +42,9 @@ app.post('/', function (req, res) {
       newX = x+2;
       newY = y;
       coords.push({'x':newX,'y':newY});
+      newX = x+3;
+      newY = y;
+      coords.push({'x':newX,'y':newY});
     }
     if (d == 'E'){
       newX = x-1;
@@ -50,6 +53,10 @@ app.post('/', function (req, res) {
       newX = x-2;
       newY = y;
       coords.push({'x':newX,'y':newY});
+      newX = x-3;
+      newY = y;
+      coords.push({'x':newX,'y':newY});
+
     }
     if (d == 'S'){
       newX = x;
@@ -58,6 +65,9 @@ app.post('/', function (req, res) {
       newX = x;
       newY = y+2;
       coords.push({'x':newX,'y':newY});
+      newX = x;
+      newY = y+3;
+      coords.push({'x':newX,'y':newY});
     }
     if (d == 'N'){
       newX = x;
@@ -65,6 +75,9 @@ app.post('/', function (req, res) {
       coords.push({'x':newX,'y':newY});
       newX = x;
       newY = y-2;
+      coords.push({'x':newX,'y':newY});
+      newX = x;
+      newY = y-3;
       coords.push({'x':newX,'y':newY});
     }
     return coords;
