@@ -215,9 +215,7 @@ app.post('/', function (req, res) {
   let surrounding = checkSurrounding(myPlayer, state);
   console.log('SURROUNDING');
   console.log(surrounding);
-  if (myPlayer.wasHit) {
-    move = 'F ';
-  } else if (playInFront){
+  if (playInFront){
     move = 'T';
   } else {
     move = (moves[Math.floor(Math.random() * moves.length)]);
