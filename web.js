@@ -13,7 +13,8 @@ app.post('/', function (req, res) {
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
-  const moves = ['F', 'T', 'L', 'R'];
+  // const moves = ['F', 'T', 'L', 'R'];
+  const moves = ['F', 'L', 'R'];
   // TODO add your implementation here to replace the random response
   let findLowestScorePlayer = function(myList){
     let lowestScorePlayer = undefined;
@@ -87,10 +88,12 @@ app.post('/', function (req, res) {
         }
       }
     }
+    return false;
   }
   let arena = info.arena;
   let dims = arena.dims;
   let state = arena.state;
+  let move = 'T';
   let myPlayer = state["https://cloud-run-hackathon-nodejs-ytkkcthfia-uc.a.run.app/"];
   let lowestScorePlayer = findLowestScorePlayer(state);
   //console.log('LOWEST PLAYER');
@@ -98,7 +101,13 @@ app.post('/', function (req, res) {
   let playInFront = isPlayerInFront(myPlayer, state);
   console.log('PLAYER IN FRONT OF ME');
   console.log(playInFront);
-  res.send(moves[1]);
+  if (playInFront){
+    move = 'T';
+  } else {
+    move = (moves[Math.floor(Math.random() * moves.length)]);
+
+  }
+  res.send(move);
 });
 
 app.listen(process.env.PORT || 8080);
