@@ -65,6 +65,7 @@ app.post('/', function (req, res) {
       newY = y-2;
       coords.push({'x':newX,'y':newY});
     }
+    return coords;
   }
   let isPlayerInFront = function(me,others){
     let shootCoords = findCoordInFront(me);
