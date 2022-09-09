@@ -115,7 +115,7 @@ app.post('/', function (req, res) {
   console.log('PLAYER IN FRONT OF ME');
   console.log(playInFront);
   if (myPlayer.wasHit) {
-    move = (moves[Math.floor(Math.random() * moves.length)]);
+    move = 'F';
   } else if (playInFront){
     move = 'T';
   } else {
