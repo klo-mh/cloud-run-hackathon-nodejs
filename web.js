@@ -68,6 +68,8 @@ app.post('/', function (req, res) {
   }
   let isPlayerInFront = function(me,others){
     let shootCoords = findCoordInFront(me);
+    console.log('SHOOT COORDS');
+    console.log(shootCoords);
     for (let [key, value] of Object.entries(others)) {
       if (value == me){
         continue;
@@ -75,12 +77,12 @@ app.post('/', function (req, res) {
         let coord = {'x':undefined,'y':undefined};
         coord.x = value.x;
         coord.y = value.y;
-        if (shootCoords[0] && shootCoords[0].x == coord.x && shootCoords[0].y == coord.y){
-          return true;
-        }
-        if (shootCoords[1] && shootCoords[1].x == coord.x && shootCoords[1].y == coord.y){
-          return true;
-        }
+        // if (shootCoords[0] && shootCoords[0].x == coord.x && shootCoords[0].y == coord.y){
+        //   return true;
+        // }
+        // if (shootCoords[1] && shootCoords[1].x == coord.x && shootCoords[1].y == coord.y){
+        //   return true;
+        // }
       }
     }
   }
