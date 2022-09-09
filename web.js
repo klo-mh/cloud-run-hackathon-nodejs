@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 4');
+  console.log('VERSION - 5');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
@@ -107,8 +107,8 @@ app.post('/', function (req, res) {
     move = (moves[Math.floor(Math.random() * moves.length)]);
 
   }
-  // res.send(move);
-  res.send('W');
+  move = 'W';
+  res.send(move);
 });
 
 app.listen(process.env.PORT || 8080);
