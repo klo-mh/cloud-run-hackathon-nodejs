@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 1');
+  console.log('VERSION - 2');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
@@ -79,12 +79,12 @@ app.post('/', function (req, res) {
         let coord = {'x':undefined,'y':undefined};
         coord.x = value.x;
         coord.y = value.y;
-        // if (shootCoords[0] && shootCoords[0].x == coord.x && shootCoords[0].y == coord.y){
-        //   return true;
-        // }
-        // if (shootCoords[1] && shootCoords[1].x == coord.x && shootCoords[1].y == coord.y){
-        //   return true;
-        // }
+        if (shootCoords[0] && shootCoords[0].x == coord.x && shootCoords[0].y == coord.y){
+          return true;
+        }
+        if (shootCoords[1] && shootCoords[1].x == coord.x && shootCoords[1].y == coord.y){
+          return true;
+        }
       }
     }
   }
