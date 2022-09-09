@@ -17,7 +17,7 @@ app.post('/', function (req, res) {
   // let lowestScorePlayer = findLowestScorePlayer(info);
   let arena = info.arena;
   let state = arena.state;
-  let lowestScorePlayer = state["https://cloud-run-hackathon-nodejs-ytkkcthfia-uc.a.run.app"];
+  let lowestScorePlayer = state["https://cloud-run-hackathon-nodejs-ytkkcthfia-uc.a.run.app/"];
   for (let [key, value] of Object.entries(state)) {
     console.log("EACH PLAYER");
     console.log(value);
