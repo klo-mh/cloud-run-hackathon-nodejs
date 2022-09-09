@@ -85,7 +85,7 @@ app.post('/', function (req, res) {
     }
   }
   let arena = info.arena;
-  let dims = area.dims;
+  let dims = arena.dims;
   let state = arena.state;
   let myPlayer = state["https://cloud-run-hackathon-nodejs-ytkkcthfia-uc.a.run.app/"];
   let lowestScorePlayer = findLowestScorePlayer(state);
