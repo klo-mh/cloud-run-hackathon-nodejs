@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 8');
+  console.log('VERSION - 9');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
@@ -103,6 +103,98 @@ app.post('/', function (req, res) {
     }
     return false;
   }
+
+  let checkSurrounding = function(me, others){
+    let x = me.x;
+    let y = me.y;
+    let d = me.direction;
+    let east = [];
+    let north = []
+    let west = [];
+    let south = [];
+    let checkCoordE1 = {'x':x-1,'y':y};
+    let checkCoordE2 = {'x':x-2,'y':y};
+    let checkCoordE3 = {'x':x-3,'y':y};
+    let checkCoordS1 = {'x':x,'y':y+1};
+    let checkCoordS2 = {'x':x,'y':y+2};
+    let checkCoordS3 = {'x':x,'y':y+3};
+    let checkCoordN1 = {'x':x,'y':y-1};
+    let checkCoordN2 = {'x':x,'y':y-2};
+    let checkCoordN3 = {'x':x,'y':y-3};
+    let checkCoordW1 = {'x':x+1,'y':y};
+    let checkCoordW2 = {'x':x+2,'y':y};
+    let checkCoordW3 = {'x':x+3,'y':y};
+    for (let [key, value] of Object.entries(others)) {
+      if (value == me){
+        continue;
+      } else {
+        let coord = {'x':undefined,'y':undefined};
+        coord.x = value.x;
+        coord.y = value.y;
+        if (checkCoordE1.x == coord.x && checkCoordE1.y == coord.y){
+          east[0] = 1;
+        } else {
+          east[0] = 0;
+        }
+        if (checkCoordE2.x == coord.x && checkCoordE2.y == coord.y){
+          east[1] = 1;
+        } else {
+          east[1] = 0;
+        }
+        if (checkCoordE3.x == coord.x && checkCoordE3.y == coord.y){
+          east[2] = 1;
+        } else {
+          east[2] = 0;
+        }
+        if (checkCoordW1.x == coord.x && checkCoordW1.y == coord.y){
+          west[0] = 1;
+        } else {
+          west[0] = 0;
+        }
+        if (checkCoordW2.x == coord.x && checkCoordW2.y == coord.y){
+          west[1] = 1;
+        } else {
+          west[1] = 0;
+        }
+        if (checkCoordW3.x == coord.x && checkCoordW3.y == coord.y){
+          west[2] = 1;
+        } else {
+          west[2] = 0;
+        }
+        if (checkCoordS1.x == coord.x && checkCoordS1.y == coord.y){
+          south[0] = 1;
+        } else {
+          south[0] = 0;
+        }
+        if (checkCoordS2.x == coord.x && checkCoordS2.y == coord.y){
+          south[1] = 1;
+        } else {
+          south[1] = 0;
+        }
+        if (checkCoordS3.x == coord.x && checkCoordS3.y == coord.y){
+          south[2] = 1;
+        } else {
+          south[2] = 0;
+        }
+        if (checkCoordN1.x == coord.x && checkCoordN1.y == coord.y){
+          north[0] = 1;
+        } else {
+          north[0] = 0;
+        }
+        if (checkCoordN2.x == coord.x && checkCoordN2.y == coord.y){
+          north[1] = 1;
+        } else {
+          north[1] = 0;
+        }
+        if (checkCoordN3.x == coord.x && checkCoordN3.y == coord.y){
+          north[2] = 1;
+        } else {
+          north[2] = 0;
+        }
+      }
+    }
+    return {'north':north,'west':west,'east':east,'south':south};
+  }
   let arena = info.arena;
   let dims = arena.dims;
   let state = arena.state;
@@ -115,12 +207,14 @@ app.post('/', function (req, res) {
   console.log('PLAYER IN FRONT OF ME');
   console.log(playInFront);
   if (myPlayer.wasHit) {
-    move = 'F';
+    let surrounding = checkSurrounding(myPlayer, state);
+    console.log('SURROUNDING');
+    console.log(surrounding);
+    move = 'F ';
   } else if (playInFront){
     move = 'T';
   } else {
     move = (moves[Math.floor(Math.random() * moves.length)]);
-
   }
   console.log('MOVE');
   console.log(move);
