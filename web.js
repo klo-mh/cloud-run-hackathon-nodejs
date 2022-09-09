@@ -14,19 +14,86 @@ app.post('/', function (req, res) {
   const info = req.body;
   const moves = ['F', 'T', 'L', 'R'];
   // TODO add your implementation here to replace the random response
-  // let lowestScorePlayer = findLowestScorePlayer(info);
-  let arena = info.arena;
-  let state = arena.state;
-  let lowestScorePlayer = state["https://cloud-run-hackathon-nodejs-ytkkcthfia-uc.a.run.app/"];
-  for (let [key, value] of Object.entries(state)) {
-    console.log("EACH PLAYER");
-    console.log(value);
-    if (value.score < lowestScorePlayer.score) {
-      lowestScorePlayer = value;
+  let findLowestScorePlayer = function(myList){
+    let lowestScorePlayer = undefined;
+    for (let [key, value] of Object.entries(myList)) {
+      if (lowestScorePlayer == undefined){
+        lowestScorePlayer = value;
+      } else {
+        if (value.score < lowestScorePlayer.score) {
+          lowestScorePlayer = value;
+        }
+      }
     }
   }
-  console.log('LOWEST PLAYER');
-  console.log(lowestScorePlayer);
+  let findCoordInFront = function (me){
+    let x = me.x;
+    let y = me.y;
+    let d = me.direction;
+    let coords = [];
+    let newX = x;
+    let newY = y;
+    if (d == 'W'){
+      newX = x+1;
+      newY = y;
+      coords.push({'x':newX,'y':newY});
+      newX = x+2;
+      newY = y;
+      coords.push({'x':newX,'y':newY});
+    }
+    if (d == 'E'){
+      newX = x-1;
+      newY = y;
+      coords.push({'x':newX,'y':newY});
+      newX = x-2;
+      newY = y;
+      coords.push({'x':newX,'y':newY});
+    }
+    if (d == 'S'){
+      newX = x;
+      newY = y+1;
+      coords.push({'x':newX,'y':newY});
+      newX = x;
+      newY = y+2;
+      coords.push({'x':newX,'y':newY});
+    }
+    if (d == 'N'){
+      newX = x;
+      newY = y-1;
+      coords.push({'x':newX,'y':newY});
+      newX = x;
+      newY = y-2;
+      coords.push({'x':newX,'y':newY});
+    }
+  }
+  let isPlayerInFront = function(me,others){
+    let shootCoords = findCoordInFront(me);
+    for (let [key, value] of Object.entries(others)) {
+      if (value == me){
+        continue;
+      } else {
+        let coord = {'x':undefined,'y':undefined};
+        coord.x = value.x;
+        coord.y = value.y;
+        if (shootCoords[0] && shootCoords[0].x == coord.x && shootCoords[0].y == coord.y){
+          return true;
+        }
+        if (shootCoords[1] && shootCoords[1].x == coord.x && shootCoords[1].y == coord.y){
+          return true;
+        }
+      }
+    }
+  }
+  let arena = info.arena;
+  let dims = area.dims;
+  let state = arena.state;
+  let myPlayer = state["https://cloud-run-hackathon-nodejs-ytkkcthfia-uc.a.run.app/"];
+  let lowestScorePlayer = findLowestScorePlayer(state);
+  //console.log('LOWEST PLAYER');
+  //console.log(lowestScorePlayer);
+  let playInFront = isPlayerInFront(myPlayer, state);
+  console.log('PLAYER IN FRONT OF ME');
+  console.log(playInFront);
   res.send(moves[1]);
 });
 
