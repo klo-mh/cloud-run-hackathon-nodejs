@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 9');
+  console.log('VERSION - 10');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
@@ -131,6 +131,9 @@ app.post('/', function (req, res) {
         let coord = {'x':undefined,'y':undefined};
         coord.x = value.x;
         coord.y = value.y;
+        console.log('DEBUG');
+        console.log(checkCoordN1);
+        console.log(coord);
         if (checkCoordE1.x == coord.x && checkCoordE1.y == coord.y){
           east[0] = 1;
         } else {
