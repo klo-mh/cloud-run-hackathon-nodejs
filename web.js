@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  console.log('VERSION - 5');
+  console.log('VERSION - 6');
   console.log('BODY');
   console.log(JSON.stringify(req.body));
   const info = req.body;
@@ -108,6 +108,8 @@ app.post('/', function (req, res) {
 
   }
   move = 'W';
+  console.log('MOVE');
+  console.log(move);
   res.send(move);
 });
 
